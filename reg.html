@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/reg.css"/>
+</head>
+<body>
+	<div class="regBox">
+		<div class="logo">
+			<a href="#"><img src="img/public/logo.png"/></a>
+		</div>
+		<h3>注册华硕商城账号</h3>
+		 <form method="pos"t>
+		 	<ul>
+		 		<li>
+		 			<span class="ip">
+		 				<input type="text" placeholder="请输入11位手机号" id="mobilePhone" name="mobilePhone"/>
+		 				<span class="warning" id="mobilePhoneMsg" style="display: none;">请输入11位手机号</span>
+		 			</span>
+		 		</li>
+                <li>
+		 			<span class="ip">
+		 				<input type="password" placeholder="8-25字符,请不要输入非法字符" id="pass"  name="pass"/>
+		 				<span class="warning" id="passMsg" style="display: none;">8-25字符,请不要输入非法字符</span>
+		 			</span>
+		 		</li>
+		 		<li>
+		 			<span class="ip">
+		 				<input type="password" placeholder="再次填写密码" id="checkPass" />
+		 				<span class="warning" id="checkPassMsg" style="display: none;">密码不一致,请再次填写密码</span>
+		 			</span>
+		 		</li>
+		 		<li>
+		 			<span class="ip">
+		 				<input type="text" placeholder="请输入验证码" class="yanzhen1" id="yanzhen1"/>
+		 				<span class="yanzhen2" id="yanzhen2"></span>
+		 		
+		 				</span>
+		 		</li>
+                <li>
+		 			<span class="ip ip1">
+		 				<input type="button" value="注册 " class="ip1" id="ip1"/>
+		 			</span>
+		 		</li>
+		 	</ul>
+		 	<span class="agree">
+		 		<input type="checkbox" checked>
+		 		<span class="agreew">
+		 			我已阅读并同意<a href="#">会员注册协议</a>和
+		 			<a href="#">隐私保护政策</a>
+		 		</span>
+		 	</span>
+            <a href="login.html" class="login" id="btn01">登录</a>
+		 </form>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js" ></script>
+<script type="text/javascript">
+document.getElementById("mobilePhone").onblur=function(){
+   var mobileStr=document.getElementById("mobilePhone").value;
+   var reg = /^1[34578]\d{9}$/;
+   if(reg.test(mobileStr))
+   {
+    document.getElementById("mobilePhoneMsg").style.display="none";
+   }
+   else{
+   	document.getElementById("mobilePhoneMsg").style.display="block";
+   }
+   
+ }  
+  
+  document.getElementById("pass").onblur=function(){
+   var passStr=document.getElementById("pass").value;
+   var reg = /^[a-zA-z0-9]\w{7,25}/;
+   if(reg.test(passStr))
+   {
+    document.getElementById("passMsg").style.display="none";
+   }
+   else{
+   	document.getElementById("passMsg").style.display="block";
+   }
+ }
+   
+ document.getElementById("checkPass").onblur=function(){
+   var checkPass=document.getElementById("checkPass").value;
+   var passStr=document.getElementById("pass").value;
+   if(checkPass==passStr)
+   {
+   	document.getElementById("checkPassMsg").style.display="none";
+   }
+   else{
+   		document.getElementById("checkPassMsg").style.display="block";
+   }
+}
+ window.onload=function(){
+  var code="";
+  var codeLength = 4;
+  var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+      'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+      'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z');	
+  for(var i = 0; i <codeLength; i++) 
+ {
+  var charNum = Math.floor(Math.random() * 52);
+  document.getElementById("yanzhen2").innerHTML+= codeChars[charNum];
+ }
+ }
+ $(function(){
+ $("#mobilePhone").blur(function(){
+ 	$.ajax({
+ 		type:"get",
+ 		url:"php/checkUser.php",
+ 		async:true,
+ 		data:{
+ 			mobilePhone:$(this).val()
+ 		},
+ 		success:function(data){
+ 			if(data=="1")
+ 			{   $("#mobilePhoneMsg").css("display","block");
+ 				$("#mobilePhoneMsg").html("该号码已经存在");
+ 			}
+ 			else if(data=="0")
+ 			{    $("#mobilePhoneMsg").css("display","block");
+ 				$("#mobilePhoneMsg").html("该号码可用");
+ 			}
+ 			else if(data=="-1"){
+ 				$("#mobilePhoneMsg").html("服务器端异常");
+ 			}
+ 		}
+ 	});
+ 	
+ });	
+ 	
+ //biao dan ti jiao gong neng
+ 	$("#ip1").click(function(){
+ 	$.ajax({
+ 		type:"post",
+ 		url:"php/addUser.php",
+ 		async:true,
+ 		data:{
+ 			mobilePhone:$("#mobilePhone")[0].value,
+ 			pass:$("#pass")[0].value
+ 		},
+ 		success:function(data){
+ 			console.log(data);
+ 			if(data=="1")
+ 			{
+ 				
+ 				alert("注册成功,即将跳转");
+ 				location.href="regAfter.html";
+ 				addCookie("mobilePhone",$("#mobilePhone")[0].value,10);
+ 			}
+ 			else
+ 			{
+ 			    alert("亲,注册失败");	
+ 			}
+ 		}
+ 	});
+ });
+ });
+</script>	

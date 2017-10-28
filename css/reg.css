@@ -1,0 +1,115 @@
+html,body,div,p,dl,dd,dt,ol,li,ul,form,table,tr,td,th,hr,h1,h2,h3,h4,h5,h6,img,input,fieldset,figure{
+margin:0;
+padding:0;
+}
+body{
+	color:#666666;
+	font-family: "微软雅黑",Arial;
+	background:#f2f2f2;
+}
+a{
+	text-decoration:none;
+}
+ul{
+	list-style: none;
+}
+h1,h2,h3,h4,h5,h6{
+	font-weight:100;
+}
+.regBox{
+	width:270px;
+	margin:0 auto;
+	background-color:white;
+	/*height:415px;*/
+	margin-top: 80px;
+	padding:17px 143px;
+
+}
+.logo {
+	width:270px;
+	height:60;
+}
+.logo a {
+	width:220px;
+	height:60;
+	display: block;
+	text-align: center;
+}
+h3{
+	font-size:20px;
+	line-height:60px;
+	color:#632626;
+	text-align: center;
+}
+form{
+	width:270px;
+	/*height:375px;*/
+	/*background:;*/
+}
+.ip{
+	width:270px;
+	height: 60px;
+     display: block;
+     position:relative;
+}
+.ip input{
+	width:270px;
+	height:30px;
+	border:1px solid #ccc;
+	outline: none;
+	background:white;
+	color:#999;
+	font-size: 12px;
+}
+.warning{
+	width:270px;
+     line-height: 16px;
+     font-size: 12px;
+     white-space: nowrap;
+     position: absolute;
+     top:33px;
+     left:0px;
+     /*display: none;*/
+}
+.ip .yanzhen1{
+  width:121px;
+  height:30px;
+  margin-right:10px;
+  border:1px solid #ccc;
+  display: inline-block;
+  float:left;
+}
+.ip .yanzhen2{
+  width:88px;
+  height:30px;
+  display: inline-block;
+  float:left;
+  border:1px solid #ccc;
+}
+
+.ip1 input{
+	background:#00a8ff;
+	color:white;
+	border:none;
+}
+.agree{
+	width:270px;
+	display: block;
+	height:30px;
+}
+.agreew{
+	font-size: 12px;
+     color:#666;
+}
+.agreew a{
+	font-size: 12px;
+     color:#0563c3;
+}
+.login{
+display: block;
+height:25px;
+width:35px;
+color:#00a8ff;
+font-size: 12px;
+margin-bottom: 10px;
+}

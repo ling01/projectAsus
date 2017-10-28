@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+<!-- top -->
+	<div class="topBar">
+		<div class="topBar-right">
+			<a href="#" id="mobilePhone">登录<img src="img/public/topbg.jpg" class="bg" /></a>
+			<a href="reg.html">注册</a>
+			<a href="#">消息</a>
+			<a href="#">我的订单</a>
+			<a href="#" id="cartId"><img src="img/public/cart.png"/>购物车(<span>0</span>)</a>
+		   </div>
+		</div>
+	</div>
+<!-- nav -->
+    <div class="nav">
+	   <div class="nav1">
+	   	  <a href="#"><img src="img/public/logo.png"/></a>
+	   	  <div class="nav1-center">
+	   	     <a href="#">开学季!最高直降千元</a>
+	   	     <a href="#">好货推荐清单</a>
+	   	     <a href="#">激活office好礼</a>
+	   	     <a href="#">以旧换新送150元券</a>
+	   	  </div>
+	   	  <div class="nav1-right">
+	   	  	  <div class="store">
+			   	  	    <span class="search-key"><input type="search" value="ASUS华硕商城" id="store"/></span>
+			   	  	    <a href="#" class="serial1">灵耀系列</a> <!-- serial1 系列1-->
+			   	  	    <a href="#" class="serial2">顽石5代</a>   <!--serial1 系列2-->
+			   	  	  	<a href="#" class="search"><i class="iconfont icon-search1"></i></a>
+	   	  	  </div>
+	   	  	  <a href="#" class="small-item">轻薄本</a>
+	   	  	  <a href="#" class="small-item">游戏主机</a>
+	   	  	  <a href="#" class="small-item">智汇家入口</a>
+	   	  </div>
+	   </div>
+    </div>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js" ></script>
+<script type="text/javascript">
+window.onload=function(){
+	var mobilePhone=getCookie("mobilePhone");
+	$("#mobilePhone")[0].innerHTML=mobilePhone;
+}	
+</script>

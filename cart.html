@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="css/cart.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	</head>
+	<body>
+		<!--header-->
+		<header></header>
+	<!--cart-mid-->
+	  <div class="cart-mid">
+	  	<div class="cart-mid1">
+	  		<p class="wenzi">哎呀,购物车还是空的</p>
+	  		<a href="login.html" class="justLogin">立即登录</a>
+	  		<a href="index.html" class="justShopping">立即去选购</a>
+	  	</div>
+	  	<!-- relative客服-->
+  <div class="qRcode1" >  <!--QRcode二维码-->
+   <img src="img/banner/im.png" class="qRcode-t" id="qRcode1"/>
+   <!--<img src="img/banner/ew.jpg" class="qRcode-b"/>-->
+</div>
+<div class="qRcode2" id="qRcode2">  <!--QRcode二维码-->
+   <div class="changebig">联系客服</div>
+   <div class="qRcode22">
+	  <a href="#"><img src="img/banner/pre-sales.png"/></a>
+	  <a href="#"><img src="img/banner/service.png"/></a>
+	  <a href="#"><img src="img/banner/tecolo.png"/></a>
+	  <a href="#"><img src="img/banner/ew1.png" class="saosao"/></a>
+	  <div class="storeEw" >商城微信客服</div>
+   </div>
+   </div> 
+
+</div>
+	  </div>
+		
+		<!--footer-->
+		<footer></footer>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+
+     $(function()
+     {
+//   header
+   $("header").load("header.html");
+     	
+   $("footer").load("footer.html");
+   
+   /*联系客服*/
+        $("#qRcode1").mouseenter(
+        function(){
+          $("#qRcode2").css("display","block");
+        }
+        );
+       $("#qRcode2").mouseleave(
+        function(){
+          $("#qRcode2").css("display","none");
+        }
+        );
+   });
+   
+</script>

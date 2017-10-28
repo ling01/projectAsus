@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/login.css"/>
+</head>
+<body>
+	<div class="top">
+		<div class="top1">
+			<a href="#"><img src="img/public/logo.png"/></a>
+		</div>
+	</div>
+	<div class="mid">
+		<div class="mid1">
+			<div class="mid11">
+			    <img src="img/login/loginbg.jpg"/>
+			</div>
+			<div class="mid12">
+			    <div class="title">
+				   <h2>ASUS华硕商城账号登陆</h2>
+				</div>
+				<form>
+					<ul>
+					   <li>
+					     <span class="lif1">
+						   <input type="text" placeholder="用户名/邮箱地址/手机号" class="f1" id="mobilePhone"/> 
+						 </span>
+					   </li>
+					   <li>
+					     <span class="lif1">
+						   <input type="password" placeholder="填写密码" class="f1" id="pass"/> 
+						 </span>
+					   </li>
+					   <li class="hide">
+					     <span class="lif1 lif11">
+						   <span  class="lif11">用户名或密码错误</span>
+						 </span>
+					   </li>
+					   <li>
+					     <span class="lif1">
+						   <input type="checkbox" checked class="rember1"/>
+						   <label class="rember">记住账号</label>
+						   <input type="checkbox" class="rember1"/>
+						   <label class="rember">两周内自动登陆</label>
+						 </span>
+					   </li>
+					   <li>
+					     <span class="lif1">
+						   <input type="button" value="登陆" class="denglu" id="denglu"/> 
+						 </span>
+					   </li>
+                       <li>
+					     <span class="lif1">
+						   <div class="jz">
+						    <a href="reg.html" class="jrasus jrasus1">注册ASUS华硕商城账号</a>
+							
+							<a href="#" class="jrasus">忘记密码</a>
+							</div>
+						 </span>
+					   </li>
+					</ul>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js" ></script>
+<script  type="text/javascript">
+$(function(){
+	//biao dan ti jiao gong neng
+ 	$("#denglu").click(function(){
+ 	$.ajax({
+ 		type:"post",
+ 		url:"php/login.php",
+ 		async:true,
+ 		data:{
+ 			mobilePhone:$("#mobilePhone")[0].value,
+ 			pass:$("#pass")[0].value
+ 		},
+ 		success:function(data){
+ 			console.log(data);
+ 			if(data=="1")
+ 			{ 
+ 				
+ 				alert("登录成功,即将跳转");
+ 				location.href="index.html";
+ 				addCookie("mobilePhone",$("#mobilePhone")[0].value,10);
+ 			}
+ 			else
+ 			{
+ 			    alert("亲,登录失败");	
+ 			}
+ 		}
+ 	});
+ });
+ });
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/regAfter.css"/>
+	</head>
+	<body>
+		<!--content-->
+		<div class="centent">
+			<div class="centent1">
+				<div class="centent1-pic">
+					<img src="img/reg/reg1.jpg"/>
+				</div>
+				<div class="centent1-wen">
+					<div class="congratulation">
+						<p class="congratulation1">恭喜<span id="mobilePhone"></span>注册成功</p>
+					</div>
+					<div class="shopping">
+						<a href="#" id="continueShopping">继续购物</a>
+						<a href="#">返回注册前页面</a>
+						<a href="#">进入会员中心</a>
+					</div>
+					<div class="set">
+						<div class="set1">
+							<p><lable>设置用户名:</lable><input type="text" class="setName"/><input type="button" value="保存" class="save"/></p>
+						</div>
+						<div class="set2">
+							<div class="set21">
+								<p>如果您不填写用户名,则系统将使用您的手机号或邮箱作为用户名,并在首页或评论咨询等地方显示</p>
+							    <p class="care">用户名只能设置一次</p>
+							</div>
+                            <div class="set22">
+                            	<p>建议您立即进行邮箱验证，使账户更安全购物更放心,<a href="#">点击</a>进行邮箱验证</p>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js" ></script>
+<script type="text/javascript">
+$(function(){
+	var mobilePhone=getCookie("mobilePhone");
+	document.getElementById("mobilePhone").innerHTML=mobilePhone;
+	$("#continueShopping").click(function(){
+	location.href="login.html";
+	});
+});
+</script>

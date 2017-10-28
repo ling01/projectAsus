@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/public.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/iconfont.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/cartShopping.css"/>
+	</head>
+	<body>
+		<!--header-->
+		<header></header>
+		<!-- relative客服-->
+			<div class="qRcode1" >  <!--QRcode二维码-->
+			   <img src="img/banner/im.png" class="qRcode-t" id="qRcode1"/>
+			   <!--<img src="img/banner/ew.jpg" class="qRcode-b"/>-->
+			</div>
+			<div class="qRcode2" id="qRcode2">  <!--QRcode二维码-->
+			   <div class="changebig">联系客服</div>
+			   <div class="qRcode22">
+				  <a href="#"><img src="img/banner/pre-sales.png"/></a>
+				  <a href="#"><img src="img/banner/service.png"/></a>
+				  <a href="#"><img src="img/banner/tecolo.png"/></a>
+				  <a href="#"><img src="img/banner/ew1.png" class="saosao"/></a>
+				  <div class="storeEw" >商城微信客服</div>
+			   </div>
+			   </div> 
+			</div>
+		<!--content-->
+		<div class="mid">
+			<form>
+				<div class="form1">
+					<ul>
+						<li>
+							<input type="checkbox" class="moreSelect"  id="moreSelect"/><label class="moreSelect1">全选</label>
+						</li>
+						<li>
+							商品
+						</li>
+						<li>
+							销售价
+						</li>
+						<li>数量</li>
+						<li>优惠金额</li>
+						<li>积分</li>
+						<li>小计</li>
+						<li>操作</li>
+					</ul>
+				</div>
+		  <div class="dongtai">
+			   
+          </div>
+			    <div class="form3">
+			    	<div class="youhui">
+			    		<h3>您还有未享受的优惠<a href="#">去凑单>></a></h3>
+			    		<p>[包邮]订单金额满69元包邮</p>
+			    	</div>
+			    </div>
+			    <div class="form4">
+			    	<div class="form41">
+			    		<a href="#" class="jixu">继续购物</a>
+			    		<p>共<span id="countNum">1</span>件商品,已选择<span id="selectNum">0</span>件</p>
+			    	    <div class="total-price">
+			    	    	<span>合计</span>
+			    	    	<b id="total">0</b>
+			    	    </div>
+			    	    <div class="account">
+			    	    	<input type="button" value="去结算"/>
+			    	    </div>
+			    	</div>
+			    </div>
+			</form>
+		</div>
+		<!--footer-->
+		<footer></footer>
+	</body>
+</html>
+<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="js/cookieTools.js"></script>
+<script type="text/javascript">
+$(function(){
+//   header
+   $("header").load("header.html",function(){
+   	var mobilePhone=getCookie("mobilePhone");
+//   	 alert(mobilePhone);
+   	if(mobilePhone==null)
+   	{
+   		$("#mobilePhone")[0].innerHTML="登录";
+   	}
+   	else
+   	{
+   	$("#mobilePhone")[0].innerHTML=mobilePhone;	
+   	}
+   	});
+//footer
+   $("footer").load("footer.html");
+   
+//relative
+    $("#qRcode1").mouseenter(
+        function(){
+          $("#qRcode2").css("display","block");
+        }
+        );
+    $("#qRcode2").mouseleave(
+        function(){
+          $("#qRcode2").css("display","none");
+        });
+//checkAll  
+$("#moreSelect").click(function(){
+	if(this.checked)
+	{
+	$(".form2Top :checkbox").attr("checked",true);	
+	}
+	else{
+	$(".form2Top :checkbox").attr("checked",false);	
+	}
+});
+//dot dan du de checkBox
+//??????????
+var  getNumber=$("form").find(".form2");
+  $("form").find(".form2").each(
+   function(){
+   	var g2=$(this).find(".pitch");
+   	var g3=g2.parent().siblings(".cart-sub").html();
+   }
+	);
+$(".pitch").click(function(){
+var t1=$(this).parent().siblings(".cart-sub").html();
+var t2=$(this).parent().parent().parent().parent().siblings(".form4").find("#total");
+if(this.checked)
+{
+ t2[0].innerHTML=t1;
+}
+ else{
+ t2[0].innerHTML=0;
+ }
+});
+
+
+   var str="";
+	$.ajax({
+		url: ' php/getShoppingCart.php',
+		type: 'get',
+		data: {
+			vipName:getCookie("mobilePhone")
+		},
+		success:function (data) {
+			console.log(data);
+			var d=eval(data);
+			
+			for(let i=0;i<d.length;i++)
+			{
+				str+=
+				 "<div class='form2Top'>"
+			    		+"<ul>"
+			    			+"<li><input type='checkbox' class='pitch'/></li>"
+			    			+"<li class='picAndwen'>"
+			    				+"<div class='pic-p'>"
+			    					+"<a href='#'>"
+			    						+"<img src='"+d[i].goodsImg+"'/>"
+			    					+"</a>"
+			    				+"</div>"
+			    				+"<div class='pic-w'>"
+			    					+"<a href='#'>"+d[i].goodsName+"</a>"
+			    				    +"<span>商品颜色：灰色</span>"
+			    				+"</div>" 
+			    			+"</li>"
+			    			+"<li class='cart-price'>"+Number(d[i].goodsPrice)+"</li>"
+			    			+"<li class='cart-num'>"
+			    				+"<div class='cart-numBox'>"
+			    					+"<a href='javascript:' class='plus'>+</a>"
+			    					+"<input type='text' value='"+Number(d[i].goodsCount)+"' class='num'/>"
+			    					+"<a href='javascript:' class='minus'>-</a>"
+			    				+"</div>"
+			    			+"</li>"
+			    			+"<li class='cart-discart'>0</li>"
+			    			+"<li class='cart-point'>7999</li>"
+			    			+"<li class='cart-sub'>'"+(Number(d[i].goodsPrice)*d[i].goodsCount)+"'</li>"
+			    			+"<li class='cart-action'>"
+			    				+"<a href='javascript:;' class='cart-action1' goodsid='"+d[i].goodsId+"'>×</a>"
+			    			+"</li>"
+			    		+"</ul>"
+			    	+"</div>"
+			    +"</div>"
+				$(".dongtai").append(str);
+			}
+			plus();
+			minus();
+		}
+	});
+
+	// careNum
+	function plus(){
+		$(".plus").click(function(event){
+		 var  n1=$(this).next(".num")[0].value;
+		      n1++;
+		      $(this).next(".num")[0].value=n1;
+		 var y1=Number($(this).parent().parent().siblings(".cart-discart").html());
+		 var p1=$(this).parent().parent().siblings(".cart-sub");
+		 var p2=Number($(this).parent().parent().siblings(".cart-price").html());
+		 p1[0].innerHTML=p2*n1-y1;
+		});
+	}
+
+function minus(){
+	$(".minus").click(function(event){
+  if($(this).siblings(".num")[0].value<=1)
+  {
+  	alert("商品的最少数量为1");
+  }else
+  {  
+   var n2= $(this).siblings(".num")[0].value;
+  	 n2--;
+  	 $(this).siblings(".num")[0].value=n2;
+  	 var p3=$(this).parent().parent().siblings(".cart-sub");
+     var p2=Number($(this).parent().parent().siblings(".cart-price").html());
+     p3[0].innerHTML=n2*p2;
+  }
+ 
+});
+}	
+
+$(".mid").on("click",".cart-action1",function(){
+	var goodsId=$(".cart-action1").attr("goodsid");
+	console.log(goodsId);
+	$.ajax({
+		url:"php/deleteGoods.php",
+		type:"get",
+		data:{
+				vipName:getCookie("mobilePhone"),
+			    goodsId:goodsId
+		     },
+		success:function(data)
+		{
+			console.log(data);
+				if(data=="1"){
+					alert("删除成功");
+					location.href="cartShopping.html"
+				}else{
+					alert("删除失败")
+				}
+	    }
+	
+	 });
+ });
+          
+
+
+});
+</script>
